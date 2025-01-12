@@ -2,6 +2,19 @@ if ("NDEFReader" in window) {
   consoleLog("Web NFC é compatível com o navegador");
 }
 
+const nfcPermissionStatus = await navigator.permissions.query({ name: "nfc" });
+if (nfcPermissionStatus.state === "granted") {
+  // NFC access was previously granted, so we can start NFC scanning now.
+  readTag();
+} else {
+  // Show a "scan" button.
+  document.querySelector("#scanButton").style.display = "block";
+  document.querySelector("#scanButton").onclick = event => {
+    // Prompt user to allow UA to send and receive info when they tap NFC devices.
+    readTag();
+  };
+}
+
 async function readTag() {
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
