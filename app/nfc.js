@@ -1,3 +1,8 @@
+if ("NDEFReader" in window) {
+  consoleLog("NDEFReader in window");
+} else {
+  consoleLog("NDEFReader not in window");
+}
 async function readTag() {
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
