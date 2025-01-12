@@ -13,7 +13,7 @@ async function readTag() {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
           // consoleLog(JSON.stringify(record));
-          consoleLog("\nID da Tag: " + record.id);
+          consoleLog("\n\nID da Tag: " + record.id);
           consoleLog("Record type:  " + record.recordType);
           consoleLog("MIME type:    " + record.mediaType);
           consoleLog("=== dados ===\n" + decoder.decode(record.data));
