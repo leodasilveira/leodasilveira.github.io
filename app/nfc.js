@@ -43,3 +43,8 @@ function consoleLog(data) {
   var logElement = document.getElementById('log');
   logElement.innerHTML += data + '\n';
 }
+
+function clearLog() { 
+  var logElement = document.getElementById('log');
+  logElement.innerHTML = '';
+}
