@@ -7,19 +7,24 @@ requestNFCPermission();
 
 async function requestNFCPermission() {
     if ("permissions" in navigator) {
-          const nfcPermissionStatus = await navigator.permissions.query({ name: "nfc" });
-          consoleLog("Permissão NFC:", nfcPermissionStatus.state);
-          if (nfcPermissionStatus.state === "granted") {
-            // NFC access was previously granted, so we can start NFC scanning now.
-            readTag();
-          } else {
-            // Show a "scan" button.
-            document.querySelector("#enableNfc").disabled = false;
-            document.querySelector("#scanButton").onclick = event => {
-              // Prompt user to allow UA to send and receive info when they tap NFC devices.
-              document.querySelector("#enableNfc").disabled = true;
-              readTag();
-          }
+        try {
+            const nfcPermissionStatus = await navigator.permissions.query({ name: "nfc" });
+            consoleLog("Permissão NFC:", nfcPermissionStatus.state);
+            if (nfcPermissionStatus.state === "granted") {
+                // NFC access was previously granted, so we can start NFC scanning now.
+                readTag();
+            } else {
+                // Show a "scan" button.
+                document.querySelector("#enableNfc").disabled = false;
+                document.querySelector("#scanButton").onclick = event => {
+                    // Prompt user to allow UA to send and receive info when they tap NFC devices.
+                    document.querySelector("#enableNfc").disabled = true;
+                    readTag();
+                };
+            }
+        } catch (error) {
+            consoleLog("Erro ao solicitar permissão NFC:", error);
+        }
     } else {
         consoleLog("A API de permissões não é suportada.");
     }
