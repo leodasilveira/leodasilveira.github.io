@@ -1,7 +1,5 @@
 if ("NDEFReader" in window) {
   consoleLog("Web NFC é compatível com o navegador");
-} else {
-  consoleLog("Web NFC não é compatível com o navegador");
 }
 
 async function readTag() {
