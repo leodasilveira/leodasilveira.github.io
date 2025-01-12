@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!--     <link rel="stylesheet" href="style.css"> -->
     <title>Teste</title>
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #consoleFrame {
+            width: 80%;
+            height: 50%;
+            border: 2px solid #333;
+            background-color: #fff;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #consoleInput {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #333;
+        }
+    </style>
 </head>
 <body>
     <h1>Teste</h1>
@@ -17,6 +41,41 @@
     </p>
     <pre id="log"></pre>
     <p><small>Based on the code snippets from <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a>.</small></p>
+    
+    <div id="consoleFrame"></div>
+    <input type="text" id="consoleInput" placeholder="Digite um comando e pressione Enter">
+    
+    <script>
+        const consoleFrame = document.getElementById('consoleFrame');
+        const consoleInput = document.getElementById('consoleInput');
+
+        consoleInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const command = consoleInput.value;
+                executeCommand(command);
+                consoleInput.value = '';
+            }
+        });
+
+        function executeCommand(command) {
+            const output = document.createElement('div');
+            output.textContent = '> ' + command;
+            consoleFrame.appendChild(output);
+
+            // Aqui você pode adicionar lógica para executar comandos específicos
+            if (command === 'hello') {
+                const response = document.createElement('div');
+                response.textContent = 'Olá, mundo!';
+                consoleFrame.appendChild(response);
+            } else {
+                const response = document.createElement('div');
+                response.textContent = 'Comando não reconhecido.';
+                consoleFrame.appendChild(response);
+            }
+
+            consoleFrame.scrollTop = consoleFrame.scrollHeight;
+        }
+    </script>
     
     <script src="app/nfc.js"></script>
 </body>
