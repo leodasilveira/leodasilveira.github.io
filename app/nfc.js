@@ -4,8 +4,6 @@ if ("NDEFReader" in window) {
   consoleLog("Web NFC não é compatível com o navegador");
 }
 
-readTag();
-
 async function readTag() {
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
