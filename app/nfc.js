@@ -3,20 +3,14 @@ if ("NDEFReader" in window) {
 }
 
 // Chame a função para solicitar permissão
-requestNFCPermission();
+readTag();
 
-async function requestNFCPermission() {
-  try {
+async function enableNfc() {
+  document.querySelector("#enableNfc").onclick = event => {
+    // Prompt user to allow UA to send and receive info when they tap NFC devices.
+    document.querySelector("#enableNfc").disabled = true;
     readTag();
-  } catch (error) {
-      // Show a "scan" button.
-      document.querySelector("#enableNfc").disabled = false;
-      document.querySelector("#scanButton").onclick = event => {
-          // Prompt user to allow UA to send and receive info when they tap NFC devices.
-          document.querySelector("#enableNfc").disabled = true;
-          readTag();
-      };
-  }
+  }; 
 }
 
 async function readTag() {
@@ -35,6 +29,7 @@ async function readTag() {
         }
       }
     } catch(error) {
+      document.querySelector("#enableNfc").disabled = false;
       consoleLog(error);
     }
   } else {
