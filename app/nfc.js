@@ -8,10 +8,11 @@ if (nfcPermissionStatus.state === "granted") {
   readTag();
 } else {
   // Show a "scan" button.
-  // document.querySelector("#scanButton").style.display = "block";
-  // document.querySelector("#scanButton").onclick = event => {
-  //   // Prompt user to allow UA to send and receive info when they tap NFC devices.
-  //   readTag();
+  document.querySelector("#enableNfc").disabled = false;
+  document.querySelector("#scanButton").onclick = event => {
+    // Prompt user to allow UA to send and receive info when they tap NFC devices.
+    document.querySelector("#enableNfc").disabled = true;
+    readTag();
   // };
 }
 
