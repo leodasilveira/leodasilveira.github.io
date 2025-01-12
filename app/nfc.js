@@ -16,6 +16,7 @@ async function readTag() {
           // consoleLog("Record type:  " + record.recordType);
           // consoleLog("MIME type:    " + record.mediaType);
           // consoleLog("=== dados ===\n" + decoder.decode(record.data));
+          //
         }
       }
     } catch(error) {
