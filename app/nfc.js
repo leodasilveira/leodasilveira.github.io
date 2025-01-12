@@ -11,11 +11,11 @@ async function readTag() {
       ndef.onreading = event => {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
-          console.log(record);
-          consoleLog("ID da Tag: " + record.id);
+          consoleLog(record);
+          // consoleLog("ID da Tag: " + record.id);
           // consoleLog("Record type:  " + record.recordType);
           // consoleLog("MIME type:    " + record.mediaType);
-          consoleLog("=== dados ===\n" + decoder.decode(record.data));
+          // consoleLog("=== dados ===\n" + decoder.decode(record.data));
         }
       }
     } catch(error) {
